@@ -1,0 +1,10 @@
+name: Kernel Validation
+on: [push]
+
+jobs:
+  kernel-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: make -C kernel/ all
+      - run: ./1-kernel-tests/module_load_test.sh example.ko 10
